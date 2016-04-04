@@ -31,30 +31,32 @@ if(command == "my-tweets"){
 	  }
 	});
 }else if(command == "spotify-this-song"){
+	spotify();
+	function spotify(){
+		var spotify = require('spotify'); 	
+		
+		if(query == undefined){
+			query = "what's my age again";
+		}
 
-	var spotify = require('spotify'); 	
-	
-	if(query == undefined){
-		query = "what's my age again";
+		spotify.search({ type: 'track', query: query }, function(err, data) {
+		    if ( err ) {
+		        console.log('Error occurred: ' + err);
+		        return;
+		    }else{
+		    	// console.log(data.tracks.items[0]);
+		    // display the following info 
+		    	//artist(s)
+		    	console.log("Artist: " + data.tracks.items[0].artists[0].name);
+		    	//song name
+		    	console.log("Song: "+ data.tracks.items[0].name);
+		    	//preview link of the song from spotify
+		    	console.log("Preview Link: " + data.tracks.items[0].preview_url);
+		    	//album the song is a part of 
+		    	console.log("Album: " + data.tracks.items[0].album.name);
+		    }
+		});
 	}
-
-	spotify.search({ type: 'track', query: query }, function(err, data) {
-	    if ( err ) {
-	        console.log('Error occurred: ' + err);
-	        return;
-	    }else{
-	    	// console.log(data.tracks.items[0]);
-	    // display the following info 
-	    	//artist(s)
-	    	console.log("Artist: " + data.tracks.items[0].artists[0].name);
-	    	//song name
-	    	console.log("Song: "+ data.tracks.items[0].name);
-	    	//preview link of the song from spotify
-	    	console.log("Preview Link: " + data.tracks.items[0].preview_url);
-	    	//album the song is a part of 
-	    	console.log("Album: " + data.tracks.items[0].album.name);
-	    }
-	});
 }else if(command == "movie-this"){
 	var request = require('request');
 
@@ -84,5 +86,14 @@ if(command == "my-tweets"){
     		//Rotten Tomatoes Rating
     		console.log("Rotten Tomatoes Rating: " + json.tomatoMeter + "%");
   		}
+	})
+}else if(command == "do-what-it-says"){
+	var fs = require('fs');
+
+	fs.readFile("random.txt", "utf8", function(err, data){
+		var output = data.split(",");
+		command = output[0];
+		query = output[1];
+		spotify();
 	})
 }
