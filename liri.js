@@ -2,7 +2,7 @@ var keys = require('./keys.js');
 
 var command = process.argv[2];
 
-var request = process.argv[3];
+var query = process.argv[3];
 
 //All possible arguments
 	//my-tweets
@@ -34,11 +34,11 @@ if(command == "my-tweets"){
 
 	var spotify = require('spotify'); 	
 	
-	if(request == undefined){
-		request = "what's my age again";
+	if(query == undefined){
+		query = "what's my age again";
 	}
 
-	spotify.search({ type: 'track', query: request }, function(err, data) {
+	spotify.search({ type: 'track', query: query }, function(err, data) {
 	    if ( err ) {
 	        console.log('Error occurred: ' + err);
 	        return;
@@ -54,5 +54,35 @@ if(command == "my-tweets"){
 	    	//album the song is a part of 
 	    	console.log("Album: " + data.tracks.items[0].album.name);
 	    }
-});
+	});
+}else if(command == "movie-this"){
+	var request = require('request');
+
+	if(query == undefined){
+		query = "Mr. Nobody";
+	}
+	
+	request('http://www.omdbapi.com/?t='+query+'&y=&plot=short&r=json&tomatoes=true', function (error, response, body) {
+  		if (!error && response.statusCode == 200) {
+  			var json = JSON.parse(body);
+    		// console.log(json) // The entire JSON object 
+    	// display the following info
+    		//Title
+    		console.log("Title: " + json.Title);
+    		//Year
+    		console.log("Year: " + json.Year);
+    		//IMDB Rating
+    		console.log("IMDB Rating: " + json.imdbRating);
+    		//Country
+    		console.log("Country: "+ json.Country);
+    		//Language
+    		console.log("Language: " + json.Language);
+    		//Plot
+    		console.log("Plot: " + json.Plot);
+    		//Actors
+    		console.log("Actors: " + json.Actors);
+    		//Rotten Tomatoes Rating
+    		console.log("Rotten Tomatoes Rating: " + json.tomatoMeter + "%");
+  		}
+	})
 }
