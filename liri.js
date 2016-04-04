@@ -2,6 +2,8 @@ var keys = require('./keys.js');
 
 var command = process.argv[2];
 
+var request = process.argv[3];
+
 //All possible arguments
 	//my-tweets
 	//spotify-this-song
@@ -30,9 +32,13 @@ if(command == "my-tweets"){
 	});
 }else if(command == "spotify-this-song"){
 
-	var spotify = require('spotify');
- 
-	spotify.search({ type: 'track', query: 'what\'s my age again' }, function(err, data) {
+	var spotify = require('spotify'); 	
+	
+	if(request == undefined){
+		request = "what's my age again";
+	}
+
+	spotify.search({ type: 'track', query: request }, function(err, data) {
 	    if ( err ) {
 	        console.log('Error occurred: ' + err);
 	        return;
@@ -48,7 +54,5 @@ if(command == "my-tweets"){
 	    	//album the song is a part of 
 	    	console.log("Album: " + data.tracks.items[0].album.name);
 	    }
-	 
-    // Do something with 'data' 
 });
 }
