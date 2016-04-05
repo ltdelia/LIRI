@@ -1,17 +1,23 @@
+// accessing the keys needed for Twitter from keys.js
 var keys = require('./keys.js');
 
+// requiring file system for our read/write
 var fs = require ('fs');
 
+// the request we will send to LIRI
+	//All possible arguments
+		//my-tweets
+		//spotify-this-song
+		//movie-this
+		//do-what-it-says
 var command = process.argv[2];
 
+// the user query (used for spotify-this-song and movie-this)
 var query = process.argv[3];
 
-//All possible arguments
-	//my-tweets
-	//spotify-this-song
-	//movie-this
-	//do-what-it-says
+// Actions that LIRI will run through depending on the command
 
+// 1. my-tweets
 if(command == "my-tweets"){
 
 	var Twitter = require('twitter');
