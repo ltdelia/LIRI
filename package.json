@@ -1,0 +1,25 @@
+{
+  "name": "liri",
+  "version": "1.0.0",
+  "description": "Language Interpretation and Recognition Interface",
+  "main": "liri.js",
+  "dependencies": {
+    "request": "^2.69.0",
+    "spotify": "^0.3.0",
+    "twitter": "^1.2.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "do-what-it-says"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ltdelia/LIRI.git"
+  },
+  "author": "Louis T. Delia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ltdelia/LIRI/issues"
+  },
+  "homepage": "https://github.com/ltdelia/LIRI#readme"
+}
