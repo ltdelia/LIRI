@@ -1,5 +1,5 @@
 // accessing the keys needed for Twitter from keys.js
-var keys = require('./keys.js');
+// var keys = require('./keys.js');
 
 // requiring file system for our read/write
 var fs = require ('fs');
@@ -55,7 +55,6 @@ if(command == "my-tweets"){
 	  }
 	});
 }else if(command == "spotify-this-song"){
-	spotify();
 	function spotify(){
 		var spotify = require('spotify'); 	
 		
@@ -68,6 +67,8 @@ if(command == "my-tweets"){
 		        console.log('Error occurred: ' + err);
 		        return;
 		    }else{
+
+				console.log(data);
 		    	// declared variables for spotify content
 		    	var artist = data.tracks.items[0].artists[0].name;
 		    	var song = data.tracks.items[0].name;
@@ -99,7 +100,7 @@ if(command == "my-tweets"){
 			 	fs.appendFile("log.txt", "*** end of spotify ***", function(err, data){})   		    	
 		    }
 		});
-	}
+	})();
 }else if(command == "movie-this"){
 	var request = require('request');
 

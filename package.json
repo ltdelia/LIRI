@@ -4,13 +4,17 @@
   "description": "Language Interpretation and Recognition Interface",
   "main": "liri.js",
   "dependencies": {
+    "dotenv": "^16.0.1",
     "request": "^2.69.0",
     "spotify": "^0.3.0",
     "twitter": "^1.2.5"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "do-what-it-says"
+    "my-tweets": "node liri.js my-tweets",
+    "spotify-this-song": "node liri.js spotify-this-song",
+    "movie-this": "node liri.js movie-this",
+    "test": "node liri.js do-what-it-says"
   },
   "repository": {
     "type": "git",

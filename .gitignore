@@ -1,2 +1,5 @@
+.env
 keys.js
+log.txt
 node_modules
+package-lock.json
